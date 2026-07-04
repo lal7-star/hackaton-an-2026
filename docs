@@ -1,0 +1,82 @@
+# MANUEL — Note de présentation
+
+**Hackathon Assemblée nationale 2026**
+Équipe : Lou-Anne Lombart, Yacer, Antoine
+
+---
+
+## Ce que vous avez entre les mains
+
+MANUEL est un outil d'analyse de recevabilité constitutionnelle des amendements parlementaires, développé intégralement durant le hackathon. Il s'intègre dans Microsoft Word — l'environnement de travail réel des collaborateurs parlementaires — et analyse en moins d'une seconde si un amendement risque d'être censuré au titre des articles 40, 41 ou 45 de la Constitution.
+
+Il fonctionne sans serveur, sans API, sans connexion internet. Les textes ne quittent jamais le navigateur.
+
+Il est déjà déployé et testable à cette adresse : **https://buildwithasem.com/cavalier/**
+
+---
+
+## Le problème réel
+
+Chaque session parlementaire, des dizaines d'amendements sont déclarés irrecevables — cavalier législatif, charge financière sans gage, empiètement réglementaire. Ces rejets mobilisent du temps des services juridiques, des présidents de séance, et des équipes parlementaires, pour des erreurs qui auraient pu être évitées en amont.
+
+Le collaborateur qui rédige un amendement à 23h avant une séance du lendemain n'a pas le temps de relire le Guide de légistique du SGG. Il a besoin d'un retour immédiat, dans son outil de travail.
+
+C'est précisément ce que fait MANUEL.
+
+---
+
+## Ce que nous avons construit en quelques jours
+
+- Un moteur de scoring constitutionnel modulaire (art. 40 / 41 / 45) basé sur l'analyse des codes législatifs cités, la classification thématique sur ~20 domaines du droit français, et la détection de patterns réglementaires.
+- Un module de contrôle rédactionnel (checklist) calé sur le Guide de légistique du SGG : structure de l'amendement, coordinations législatives, dispositions transitoires pour les suppressions d'institutions, formalisme procédural.
+- Une interface add-in Word claire, sobre, lisible en séance — avec extraction PDF intégrée pour coller directement les documents officiels de l'Assemblée.
+- Une section "Explication juridique" qui produit une argumentation mobilisable en commission.
+- Le tout testé sur des amendements réels, dont un amendement CESER examiné en commission (CC 2026-903 DC).
+
+**Ce n'est pas une maquette. C'est un outil fonctionnel.**
+
+---
+
+## Ce que nous aurions fait avec plus de temps
+
+Ce prototype est une version délibérément simplifiée. Nous avons fait des choix pour livrer quelque chose de solide et utilisable dans les délais du hackathon. Avec un cycle de développement normal, voici ce que cette base permet de construire :
+
+**1. Connexion aux données ouvertes de l'Assemblée nationale**
+
+L'étape naturelle est de brancher MANUEL sur les flux ouverts : `an-amendements-xvii`, `premier-ministre-legi`, `an-dossiers-legislatifs`. Le moteur de scoring pourrait s'alimenter en temps réel des textes en discussion, sans que l'utilisateur ait à copier-coller quoi que ce soit — le projet de loi serait chargé automatiquement depuis le dossier législatif en cours.
+
+**2. Apprentissage sur la jurisprudence**
+
+La base de jurisprudence du Conseil constitutionnel contient des centaines de décisions sur les cavaliers législatifs. En les structurant, on peut affiner le scoring et réduire les faux positifs. Le moteur actuel est déjà calibré sur plusieurs décisions — c'est un début.
+
+**3. Historique et analyse de masse**
+
+Un groupe parlementaire pourrait analyser l'ensemble des amendements déposés sur un texte, identifier les risques systémiques, et prioriser le travail juridique. C'est une heure de code supplémentaire sur la base actuelle.
+
+**4. Suggestions de reformulation par IA**
+
+Coupler le moteur de détection avec un modèle de langage (Claude, GPT) pour proposer automatiquement une reformulation conforme. La détection locale reste le filet de sécurité — l'IA apporte la reformulation. Architecture déjà prévue dans le code.
+
+**5. Déploiement institutionnel**
+
+La structure add-in Word est compatible avec un déploiement via le Microsoft 365 Admin Center de l'Assemblée — sans installation côté utilisateur. Un manifeste XML suffit. C'est déjà le cas aujourd'hui pour la version hackathon.
+
+---
+
+## Pourquoi nous
+
+Nous formons une équipe complémentaire : expertise juridique parlementaire, développement produit et engineering.
+
+Lou-Anne connaît le terrain — les contraintes réelles du travail parlementaire, les angles morts des services juridiques, les cas limites qui font débat en commission. C'est elle qui a défini les règles de scoring, identifié les faux positifs, choisi quoi afficher et quoi taire.
+
+Yacer et Antoine ont construit le produit — architecture, moteur, interface, déploiement — en itérant directement sur des amendements réels fournis par Lou-Anne.
+
+Cette dynamique — un problème métier précis, une exécution technique rapide, une validation sur le terrain — est exactement ce qu'il faut pour construire des outils qui servent vraiment les institutions.
+
+**Nous n'avons pas fait une démonstration de faisabilité. Nous avons livré un outil.**
+
+Imaginez ce que nous pouvons faire avec un vrai accès aux données, du temps, et un cadre institutionnel.
+
+---
+
+*Contact : Lou-Anne Lombart (louanne.lombart@gmail.com) · Yacer (YacerPro@hotmail.com) · Antoine (antoine.umla@gmail.com) — https://buildwithasem.com*
